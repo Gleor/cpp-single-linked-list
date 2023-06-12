@@ -196,16 +196,12 @@ public:
 
     SingleLinkedList(const SingleLinkedList& other) {
         assert(size_ == 0 && head_.next_node == nullptr);
-        size_ = other.size_;
-        SingleLinkedList<Type> tmp;
-        tmp.MakeSingleLinkedList(other.begin(), other.end());
-        swap(tmp);
+        MakeSingleLinkedList(other.begin(), other.end());
     }
 
     SingleLinkedList& operator=(const SingleLinkedList& rhs) {
         if (this != &rhs) {
-            SingleLinkedList<Type> tmp;
-            tmp.MakeSingleLinkedList(rhs.begin(), rhs.end());
+            SingleLinkedList<Type> tmp(rhs);
             swap(tmp);
         }
         return *this;
@@ -275,13 +271,16 @@ private:
 
 template <typename Type> template <typename input_iterator>
 void SingleLinkedList<Type>::MakeSingleLinkedList(input_iterator first, input_iterator last) {
-    SingleLinkedList<Type>::Node* temp = &head_;
+    size_ = 0;
+    SingleLinkedList<Type> tmp;
+    SingleLinkedList<Type>::Node* temp = &tmp.head_;
     for (; first != last; ++first)
     {
         temp->next_node = new Node(*first, temp->next_node);
         temp = temp->next_node;
-        ++size_;
+        ++tmp.size_;
     }
+    swap(tmp);
 }
 
 template <typename Type>
@@ -291,8 +290,8 @@ void swap(SingleLinkedList<Type>& lhs, SingleLinkedList<Type>& rhs) noexcept {
 
 template <typename Type>
 bool operator==(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
-    return lhs.GetSize() == rhs.GetSize() &&
-        std::equal(lhs.cbegin(), lhs.cend(), rhs.cbegin());
+    return &lhs == &rhs || (lhs.GetSize() == rhs.GetSize() &&
+        std::equal(lhs.cbegin(), lhs.cend(), rhs.cbegin()));
 }
 
 template <typename Type>
