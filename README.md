@@ -103,4 +103,4 @@ assert((first_list > second_list) == false);
 
 ## **Использование**
 
-Для испольования данного класса нужно скопировать файл single-linked-list.h в папку с проектом и подключить через директиву #include<single-linked-list.h>
+Для испольования данного класса нужно скопировать файл single-linked-list.h в папку с проектом и подключить через директиву #include "single-linked-list.h"
