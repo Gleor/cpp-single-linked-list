@@ -10,26 +10,26 @@
 
 **Конструктор по-умолчанию - создаёт пустой список**
 
-```
+```cpp
 SingleLinkedList<int> list;
 ```
 
 **Конструктор из набора элементов**
 
-```
+```cpp
 SingleLinkedList<int> list{1, 2, 3, 4, 5};
 ```
 
 **Копирующий конструктор**
 
-```
+```cpp
 SingleLinkedList<int> list_source{1, 2, 3, 4};
 auto list_copy(list_source);
 ```
 
 **Оператор копирующего присваивания**
 
-```
+```cpp
 const SingleLinkedList<int> first_list{1, 2, 3, 4};
 SingleLinkedList<int> second_list = first_list;
 ```
@@ -38,7 +38,7 @@ SingleLinkedList<int> second_list = first_list;
 
 **Получение константных/неконстантных итераторов на начало и конец списка: begin(), end()**
 
-```
+```cpp
 SingleLinkedList<int> list{1};
 auto iter = list.begin();
 assert(*iter == 1);
@@ -48,7 +48,7 @@ assert(iter == list.end());
 
 **Получение информации о ёмкости списка : проверка на отсутствие элементов и текущий размер**
 
-```
+```cpp
 SingleLinkedList<int> list{1, 2, 3};
 assert(list.GetSize() == 3);
 assert(list.IsEmpty() == false);
@@ -56,7 +56,7 @@ assert(list.IsEmpty() == false);
 
 **Добавление и удаление элемента в начале списка**
 
-```
+```cpp
 SingleLinkedList<int> list;
 list.PushFront(2);
 list.PushFront(1);
@@ -67,7 +67,7 @@ assert(*list.begin() == 2);
 
 **Вставка и удаление элемента в произвольной позиции**
 
-```
+```cpp
 SingleLinkedList<int> list;
 auto iter = list.begin();
 iter = numbers.InsertAfter(iter, 1);
@@ -81,7 +81,7 @@ for (auto elem : list) {
 ```
 **Обмен содержимого списков**
 
-```
+```cpp
 SingleLinkedList<int> first_list{1, 2, 3, 4, 5};
 SingleLinkedList<int> second_list{6, 7, 8, 9, 10};
 first_list.swap(second_list);
@@ -91,7 +91,7 @@ assert(*second_list.begin() == 1);
 
 **Операторы сравнения двух списков (лексикографически, поэлементно)**
 
-```
+```cpp
 SingleLinkedList<int> first_list = {1, 2, 3, 4, 5};
 SingleLinkedList<int> second_list = {1, 2, 5, 6, 7};
 assert((first_list > second_list) == false);
